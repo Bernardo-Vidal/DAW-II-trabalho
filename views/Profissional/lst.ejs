@@ -1,0 +1,42 @@
+<%-include('../cabecalho.ejs')%>
+    <h1 style="text-align:center; margin-bottom:32px; color:#333;">Fabricante</h1>
+    <a href="/Fabricante/add" class="btn add" style="margin-bottom:32px;">Adicionar fabricante</a>
+    <table class="curso-table" style="margin-top:24px;">
+        <thead>
+            <tr style="background:#e9ecef; color:#333;">
+                <th>Nome</th>
+                <th>Ano de fundacao</th>
+                <th>id</th>
+                <th colspan="2" style="text-align:center;">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <form method="post">
+                <label>Nome do fabricante:</label>
+                <input type="text" name="fabricante"><br>
+                <button type="submit" class="btn submit">Procurar</button>
+            </form>
+            <%for (const{nome, anoDeFundacao, id} of
+                Fabricantes) {%>
+                <tr>
+                    <td>
+                        <%=nome%>
+                    </td>
+                    <td>
+                        <%=anoDeFundacao%>
+                    </td>
+                    <td>
+                        <%=id%>
+                    </td>
+                    <td><a href="/Fabricante/edt/<%=id%>" class="btn edit"><i class="fa-solid fa-pen">‌</i>&nbsp;Editar
+                            fabricante</a></td>
+                    <td><a href="/Fabricante/del/<%=id%>" class="btn delete"
+                            onclick="return confirm('Tem certeza que deseja excluir este fabricante?')"><i
+                                class="fa-solid fa-box-archive">‌</i>&nbsp;Excluir fabricante</a></td>
+                </tr>
+                <%}%>
+        </tbody>
+    </table>
+
+    <%-include('../rodape.ejs')%>

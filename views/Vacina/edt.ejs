@@ -1,0 +1,26 @@
+<%-include('../cabecalho.ejs')%>
+    <h1>Editar Celular</h1>
+    <div style="margin-bottom: 24px;">
+        <a href="/Celular/lst" class="btn">Listar</a>
+    </div>
+    <div>
+        <form method="post" class="form-visual">
+            <label>ID:</label>
+            <input type="text" name="id" value="<%= Celular.id %>" disabled><br>
+            <label>Digite o novo nome:</label>
+            <input type="text" name="nome" value="<%= Celular.nome %>"><br>
+            <label>Digite o novo modelo:</label>
+            <input type="text" name="modelo" value="<%= Celular.modelo %>"><br>
+            <label>Digite o novo sistema:</label>
+            <input type="text" name="sistema" value="<%= Celular.sistema %>"><br>
+            <label>Novo armazenamento:</label>
+            <input type="number" name="armazenamento" value="<%= Celular.armazenamento %>"><br>
+            <label>Novo preço:</label>
+            <input type="number" name="preco" value="<%= Celular.preco %>"><br>
+            <label>Novo fabricante:</label>
+            <input type="text" name="fabricante" value="<%= Celular.fabricante %>"><br>
+
+            <button type="submit" class="btn submit">Submeter edição</button>
+        </form>
+    </div>
+    <%-include('../rodape.ejs')%>

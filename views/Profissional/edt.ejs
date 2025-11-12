@@ -1,0 +1,18 @@
+<%-include('../cabecalho.ejs')%>
+    <h1>Editar Fabricante</h1>
+    <div style="margin-bottom: 24px;">
+        <a href="/Fabricante/lst" class="btn">Listar</a>
+    </div>
+    <div>
+        <form method="post" class="form-visual">
+            <label>ID:</label>
+            <input type="text" name="id" value="<%= Fabricante.id %>" disabled><br>
+            <label>Digite o novo nome:</label>
+            <input type="text" name="nome" value="<%= Fabricante.nome %>"><br>
+            <label>Novo ano de fundação:</label>
+            <input type="number" name="anoDeFundacao" value="<%= Fabricante.anoDeFundacao %>"><br>
+
+            <button type="submit" class="btn submit">Submeter edição</button>
+        </form>
+    </div>
+    <%-include('../rodape.ejs')%>
