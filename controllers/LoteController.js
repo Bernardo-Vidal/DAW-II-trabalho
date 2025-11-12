@@ -1,78 +1,74 @@
 //importar o Model
-import Celular from '../models/Celular.js'
+import Lote from "../models/Lote.js";
+import Laboratorio from "../models/Laboratorio.js";
 
-export default class CelularController
-{
+export default class LoteController {
+    constructor(caminhoBase = "Lote/") {
+        this.caminhoBase = caminhoBase;
 
-    constructor(caminhoBase = 'Celular/')
-    {
-        this.caminhoBase = caminhoBase
-    
-        this.openAdd = async(req, res)=>
-        {
-            res.render(caminhoBase + "add")
-        }
-            this.Excluir = async(req, res)=>{
-                await Celular.findByIdAndDelete(req.params.id)
-                res.redirect('/' + this.caminhoBase + 'lst')
+        this.openAdd = async (req, res) => {
+            const resultado = await Laboratorio.find({});
+            res.render(caminhoBase + "add", { Laboratorio: resultado });
+        };
+        this.Excluir = async (req, res) => {
+            await Lote.findByIdAndDelete(req.params.id);
+            res.redirect("/" + this.caminhoBase + "lst");
+        };
+        this.add = async (req, res) => {
+            var laboratorio = null;
+
+            if (req.body.laboratorio != null) {
+                laboratorio = await Laboratorio.findById(req.body.laboratorio);
             }
-        this.add = async(req, res)=>
-        {
-            await Celular.create
-            (
-                {
-                    nome: req.body.nome,
-                    modelo: req.body.modelo,
-                    sistema: req.body.sistema,
-                    armazenamento: req.body.armazenamento,
-                    preco: req.body.preco,
-                    fabricante: req.body.fabricante,
-                    foto: req.file.buffer
-                }
 
-            )
-            res.redirect('/' + caminhoBase + 'add')
-        }
-        this.list = async(req, res)=>
-        {
-            const resultado = await Celular.find({})
+            await Lote.create({
+                codigo: req.body.codigo,
+                validade: req.body.validade,
+                laboratorio: laboratorio,
+            });
+            res.redirect("/" + caminhoBase + "add");
+        };
+        this.list = async (req, res) => {
+            const laboratorio = await laboratorio.find({});
+            const resultado = await Lote.find({}).populate("laboratorio");
 
-            const resposta = resultado.map(celular => ({
-            id: celular._id,
-            nome: celular.nome,
-            modelo: celular.modelo,
-            sistema: celular.sistema,
-            armazenamento: celular.armazenamento,
-            preco: celular.preco,
-            fabricante: celular.fabricante,
-            foto: celular.foto && Buffer.isBuffer(celular.foto)
-            ? `data:image/png;base64,${celular.foto.toString('base64')}`
-            : null
-            }));
-
-            res.render(caminhoBase + 'lst', {Celulares:resposta})
-        }
-        this.openEdt = async(req, res)=>
-        {
+            res.render(caminhoBase + "lst", {
+                Lotes: resultado,
+                Laboratorio: laboratorio,
+            });
+        };
+        this.openEdt = async (req, res) => {
             //passar quem eu quero editar
-            const id = req.params.id
-            const celular = await Celular.findById(id)
-            console.log(celular)
-            res.render(caminhoBase + 'edt', {Celular:celular})  
-        }
-        this.Edt = async(req, res)=>{
-            await Celular.findByIdAndUpdate(req.params.id, req.body)
-            res.redirect('/' + caminhoBase + 'lst')
-        }
+            const id = req.params.id;
+            const Lote = await Lote.findById(id);
+            const Laboratorio = await Laboratorio.find({});
+            console.log(Lote);
+            res.render(caminhoBase + "edt", {
+                Lote: Lote,
+                Laboratorio: Laboratorio,
+            });
+        };
+        this.Edt = async (req, res) => {
+            var laboratorio = null;
 
-        this.find = async(req, res) =>{
+            if (req.body.laboratorio != null) {
+                laboratorio = await Laboratorio.findById(req.body.laboratorio);
+            }
 
-            const filtro = req.body.celular
-            const resultado = await Celular.find({nome: { $regex: filtro, $options: "i" }})
-            res.render(caminhoBase + 'lst', {Celulares:resultado})
-        }
+            await Lote.findByIdAndUpdate(req.params.id, req.body);
+            res.redirect("/" + caminhoBase + "lst");
+        };
 
-
-        
+        this.find = async (req, res) => {
+            const filtro = req.body.filtro;
+            const laboratorio = await Laboratorio.find({});
+            const resultado = await Lote.find({
+                codigo: { $regex: filtro, $options: "i" },
+            });
+            res.render(caminhoBase + "lst", {
+                Lotes: resultado,
+                Laboratorios: laboratorio,
+            });
+        };
     }
 }

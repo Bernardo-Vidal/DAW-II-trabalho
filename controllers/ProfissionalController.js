@@ -1,78 +1,62 @@
 //importar o Model
-import Celular from '../models/Celular.js'
+import Profissional from "../models/Profissional.js";
 
-export default class CelularController
-{
+export default class ProfissionalController {
+    constructor(caminhoBase = "Profissional/") {
+        this.caminhoBase = caminhoBase;
 
-    constructor(caminhoBase = 'Celular/')
-    {
-        this.caminhoBase = caminhoBase
-    
-        this.openAdd = async(req, res)=>
-        {
-            res.render(caminhoBase + "add")
-        }
-            this.Excluir = async(req, res)=>{
-                await Celular.findByIdAndDelete(req.params.id)
-                res.redirect('/' + this.caminhoBase + 'lst')
-            }
-        this.add = async(req, res)=>
-        {
-            await Celular.create
-            (
-                {
-                    nome: req.body.nome,
-                    modelo: req.body.modelo,
-                    sistema: req.body.sistema,
-                    armazenamento: req.body.armazenamento,
-                    preco: req.body.preco,
-                    fabricante: req.body.fabricante,
-                    foto: req.file.buffer
-                }
+        this.openAdd = async (req, res) => {
+            res.render(caminhoBase + "add");
+        };
+        this.Excluir = async (req, res) => {
+            await Profissional.findByIdAndDelete(req.params.id);
+            res.redirect("/" + this.caminhoBase + "lst");
+        };
+        this.add = async (req, res) => {
+            await Profissional.create({
+                nome: req.body.nome,
+                cargo: req.body.cargo,
+                crm: req.body.crm,
+                foto: req.file.buffer,
+            });
+            res.redirect("/" + caminhoBase + "add");
+        };
+        this.list = async (req, res) => {
+            const resultado = await Profissional.find({});
 
-            )
-            res.redirect('/' + caminhoBase + 'add')
-        }
-        this.list = async(req, res)=>
-        {
-            const resultado = await Celular.find({})
-
-            const resposta = resultado.map(celular => ({
-            id: celular._id,
-            nome: celular.nome,
-            modelo: celular.modelo,
-            sistema: celular.sistema,
-            armazenamento: celular.armazenamento,
-            preco: celular.preco,
-            fabricante: celular.fabricante,
-            foto: celular.foto && Buffer.isBuffer(celular.foto)
-            ? `data:image/png;base64,${celular.foto.toString('base64')}`
-            : null
+            const resposta = resultado.map((Profissional) => ({
+                id: Profissional._id,
+                nome: Profissional.nome,
+                cargo: Profissional.cargo,
+                crm: Profissional.crm,
+                foto:
+                    Profissional.foto && Buffer.isBuffer(Profissional.foto)
+                        ? `data:image/png;base64,${Profissional.foto.toString(
+                              "base64"
+                          )}`
+                        : null,
             }));
 
-            res.render(caminhoBase + 'lst', {Celulares:resposta})
-        }
-        this.openEdt = async(req, res)=>
-        {
+            res.render(caminhoBase + "lst", { Profissional: resposta });
+        };
+        this.openEdt = async (req, res) => {
             //passar quem eu quero editar
-            const id = req.params.id
-            const celular = await Celular.findById(id)
-            console.log(celular)
-            res.render(caminhoBase + 'edt', {Celular:celular})  
-        }
-        this.Edt = async(req, res)=>{
-            await Celular.findByIdAndUpdate(req.params.id, req.body)
-            res.redirect('/' + caminhoBase + 'lst')
-        }
+            const id = req.params.id;
+            const Profissional = await Profissional.findById(id);
+            console.log(Profissional);
+            res.render(caminhoBase + "edt", { Profissional: Profissional });
+        };
+        this.Edt = async (req, res) => {
+            await Profissional.findByIdAndUpdate(req.params.id, req.body);
+            res.redirect("/" + caminhoBase + "lst");
+        };
 
-        this.find = async(req, res) =>{
-
-            const filtro = req.body.celular
-            const resultado = await Celular.find({nome: { $regex: filtro, $options: "i" }})
-            res.render(caminhoBase + 'lst', {Celulares:resultado})
-        }
-
-
-        
+        this.find = async (req, res) => {
+            const filtro = req.body.Profissional;
+            const resultado = await Profissional.find({
+                nome: { $regex: filtro, $options: "i" },
+            });
+            res.render(caminhoBase + "lst", { Profissionales: resultado });
+        };
     }
 }
