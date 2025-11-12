@@ -1,13 +1,13 @@
-import conexao from '../config/conexao.js'
+import conexao from "../config/conexao.js";
 
-const Celular = conexao.Schema({
-    nome: {type:String, required:true},
-    modelo:{type:String, required:true},
-    sistema:{type:String, required:true},
-    armazenamento:{type:Number, required:true},
-    preco:{type:Number, required:true},
-    fabricante:{type:String, required:true},
-    foto:{type:Buffer, required:true}
-})
+const Lote = conexao.Schema({
+    validade: { type: Date, required: true },
+    codigo: { type: String, required: true },
+    laboratorio: {
+        type: conexao.Types.ObjectId,
+        ref: "Laboratorio",
+        required: true,
+    },
+});
 
-export default conexao.model('Celular',Celular)
+export default conexao.model("Lote", Lote);
