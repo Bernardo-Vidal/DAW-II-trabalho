@@ -19,5 +19,4 @@ router.get("/" + caminhobase + "edt/:id", controle.openEdt);
 router.get("/" + caminhobase + "edt/:id", controle.Edt);
 router.post("/" + caminhobase + "edt/:id", controle.Edt);
 router.get("/" + caminhobase + "del/:id", controle.Excluir);
-router.post("/" + caminhobase + "add", upload.single("foto"), controle.add);
 export default router;
