@@ -13,7 +13,6 @@ export default class LaboratorioController {
             res.redirect("/" + this.caminhoBase + "lst");
         };
         this.add = async (req, res) => {
-            console.log(req.body);
             await Laboratorio.create({
                 logo: req.file.buffer,
                 nome: req.body.nome,
