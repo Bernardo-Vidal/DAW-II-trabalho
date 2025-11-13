@@ -7,7 +7,8 @@ export default class VacinaController {
         this.caminhoBase = caminhoBase;
 
         this.openAdd = async (req, res) => {
-            res.render(caminhoBase + "add");
+            const lote = await Lote.find({});
+            res.render(caminhoBase + "add", { Lotes: lote });
         };
         this.Excluir = async (req, res) => {
             await Vacina.findByIdAndDelete(req.params.id);

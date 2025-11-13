@@ -24,20 +24,7 @@ export default class ProfissionalController {
         this.list = async (req, res) => {
             const resultado = await Profissional.find({});
 
-            const resposta = resultado.map((Profissional) => ({
-                id: Profissional._id,
-                nome: Profissional.nome,
-                cargo: Profissional.cargo,
-                crm: Profissional.crm,
-                foto:
-                    Profissional.foto && Buffer.isBuffer(Profissional.foto)
-                        ? `data:image/png;base64,${Profissional.foto.toString(
-                              "base64"
-                          )}`
-                        : null,
-            }));
-
-            res.render(caminhoBase + "lst", { Profissional: resposta });
+            res.render(caminhoBase + "lst", { Profissional: resultado });
         };
         this.openEdt = async (req, res) => {
             //passar quem eu quero editar

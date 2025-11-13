@@ -1,56 +1,41 @@
 <%-include('../cabecalho.ejs')%>
-    <h1 style="text-align:center; margin-bottom:32px; color:#333;">Celular</h1>
-    <a href="/Celular/add" class="btn add" style="margin-bottom:32px;">Adicionar celular</a>
+    <h1 style="text-align:center; margin-bottom:32px; color:#333;">Laboratorio</h1>
+    <a href="/Laboratorio/add" class="btn add" style="margin-bottom:32px;">Adicionar Laboratorio</a>
     <table class="curso-table" style="margin-top:24px;">
         <thead>
             <tr style="background:#e9ecef; color:#333;">
                 <th>Nome</th>
-                <th>Modelo</th>
-                <th>Sistema</th>
-                <th>Armazenameto</th>
-                <th>Preco</th>
-                <th>Fabricante</th>
-                <th>id</th>
+                <th>Email</th>
+                <th>Endereco</th>
+                <th>Logo</th>
                 <th colspan="2" style="text-align:center;">Ações</th>
             </tr>
         </thead>
         <tbody>
 
             <form method="post">
-                <label>Nome do celular:</label>
-                <input type="text" name="celular"><br>
-                <button type="submit" class="btn submit">Procurar</button>
+                <label>Nome do Laboratorio:</label>
+                <input type="text" name="Laboratorio"><br>
+                <button type="submit" class="btn submit">Buscar</button>
             </form>
-            <%for (const{nome, modelo, sistema, armazenamento, preco, fabricante, foto, id} of
-                Celulares) {%>
+            <%for (const{id, nome, endereco, email, logo} of
+                Laboratorios) {%>
                 <tr>
                     <td>
                         <%=nome%>
                     </td>
                     <td>
-                        <%=modelo%>
+                        <%=endereco%>
                     </td>
                     <td>
-                        <%=sistema%>
+                        <%=email%>
                     </td>
-                    <td>
-                        <%=armazenamento%> GB
-                    </td>
-                    <td>
-                        R$<%=preco%>,00
-                    </td>
-                    <td>
-                        <%=fabricante%>
-                    </td>
-                    <td>
-                        <%=id%>
-                    </td>
-                    <td><img src="<%=foto%>" width="150" height="150" name="foto"></td>
-                    <td><a href="/Celular/edt/<%=id%>" class="btn edit"><i class="fa-solid fa-pen">‌</i>&nbsp;Editar
-                            celular</a></td>
-                    <td><a href="/Celular/del/<%=id%>" class="btn delete"
-                            onclick="return confirm('Tem certeza que deseja excluir este celular?')"><i
-                                class="fa-solid fa-box-archive">‌</i>&nbsp;Excluir celular</a></td>
+                    <td><img src="<%=logo%>" width="150" height="150" name="logo"></td>
+                    <td><a href="/Laboratorio/edt/<%=id%>" class="btn edit"><i class="fa-solid fa-pen">‌</i>&nbsp;Editar
+                            Laboratorio</a></td>
+                    <td><a href="/Laboratorio/del/<%=id%>" class="btn delete"
+                            onclick="return confirm('Tem certeza que deseja excluir este Laboratorio?')"><i
+                                class="fa-solid fa-box-archive">‌</i>&nbsp;Excluir Laboratorio</a></td>
                 </tr>
                 <%}%>
         </tbody>

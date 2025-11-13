@@ -1,5 +1,4 @@
 //importar o Model
-import Laboratorio from "../models/Laboratorio.js";
 import Paciente from "../models/Paciente.js";
 import Profissional from "../models/Profissional.js";
 import Vacina from "../models/Vacina.js";
@@ -50,25 +49,8 @@ export default class PacienteController {
                 "profissional"
             );
 
-            const resposta = resultado.map((Paciente) => ({
-                /*
-                id: Paciente._id,
-                nome: Paciente.nome,
-                modelo: Paciente.modelo,
-                sistema: Paciente.sistema,
-                armazenamento: Paciente.armazenamento,
-                preco: Paciente.preco,
-                fabricante: Paciente.fabricante,*/
-                foto:
-                    Paciente.foto && Buffer.isBuffer(Paciente.foto)
-                        ? `data:image/png;base64,${Paciente.foto.toString(
-                              "base64"
-                          )}`
-                        : null,
-            }));
-
             res.render(caminhoBase + "lst", {
-                Pacientes: resposta,
+                Pacientes: resultado,
                 Vacinas: vacina,
                 Profissional: profissional,
             });
@@ -106,14 +88,14 @@ export default class PacienteController {
         this.find = async (req, res) => {
             const filtro = req.body.Paciente;
             const vacina = await Vacina.find({});
-            const laboratorio = await Laboratorio.find({});
+            const profissional = await Profissional.find({});
             const resultado = await Paciente.find({
                 nome: { $regex: filtro, $options: "i" },
             });
             res.render(caminhoBase + "lst", {
                 Pacientes: resultado,
                 Vacina: vacina,
-                Laboratorio: laboratorio,
+                Profissional: profissional,
             });
         };
     }

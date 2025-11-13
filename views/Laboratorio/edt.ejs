@@ -1,24 +1,19 @@
 <%-include('../cabecalho.ejs')%>
-    <h1>Editar Celular</h1>
+    <h1>Editar Laboratorio</h1>
     <div style="margin-bottom: 24px;">
-        <a href="/Celular/lst" class="btn">Listar</a>
+        <a href="/Laboratorio/lst" class="btn">Listar</a>
     </div>
     <div>
-        <form method="post" class="form-visual">
-            <label>ID:</label>
-            <input type="text" name="id" value="<%= Celular.id %>" disabled><br>
-            <label>Digite o novo nome:</label>
-            <input type="text" name="nome" value="<%= Celular.nome %>"><br>
-            <label>Digite o novo modelo:</label>
-            <input type="text" name="modelo" value="<%= Celular.modelo %>"><br>
-            <label>Digite o novo sistema:</label>
-            <input type="text" name="sistema" value="<%= Celular.sistema %>"><br>
-            <label>Novo armazenamento:</label>
-            <input type="number" name="armazenamento" value="<%= Celular.armazenamento %>"><br>
-            <label>Novo preço:</label>
-            <input type="number" name="preco" value="<%= Celular.preco %>"><br>
-            <label>Novo fabricante:</label>
-            <input type="text" name="fabricante" value="<%= Celular.fabricante %>"><br>
+        <form method="post" class="form-visual" enctype="multipart/form-data">
+            <label>Nome:</label>
+            <input type="text" name="nome" value="<%= Laboratorio.nome %>"><br>
+            <label>Endereco:</label>
+            <input type="text" name="endereco" value="<%= Laboratorio.endereco %>"><br>
+            <label>Email:</label>
+            <input type="text" name="email" value="<%= Laboratorio.email %>"><br>
+            <label>Logo:</label>
+            <img src="<%=Laboratorio.logo%>" width="150" height="150">
+            <input type="file" name="logo" accept="image/png"><br>
 
             <button type="submit" class="btn submit">Submeter edição</button>
         </form>

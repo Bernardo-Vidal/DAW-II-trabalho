@@ -2,7 +2,14 @@ import conexao from "../config/conexao.js";
 
 const Paciente = conexao.Schema({
     nome: { type: String, required: true },
-    foto: { type: Buffer, required: true },
+    foto: {
+        type: Buffer,
+        required: true,
+        get: (valor) => {
+            if (!valor) return null;
+            return `data:image/png;base64,${valor.toString("base64")}`;
+        },
+    },
     dataNascimento: { type: Date, required: true },
     sus: { type: Number, required: true },
     cpf: { type: Number, required: true },
