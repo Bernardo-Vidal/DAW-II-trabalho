@@ -1,25 +1,39 @@
 <%-include('../cabecalho.ejs')%>
-    <h1>Editar Celular</h1>
+    <h1>Editar Vacina</h1>
     <div style="margin-bottom: 24px;">
-        <a href="/Celular/lst" class="btn">Listar</a>
+        <a href="/Vacina/lst" class="btn">Listar</a>
     </div>
     <div>
         <form method="post" class="form-visual">
-            <label>ID:</label>
-            <input type="text" name="id" value="<%= Celular.id %>" disabled><br>
-            <label>Digite o novo nome:</label>
-            <input type="text" name="nome" value="<%= Celular.nome %>"><br>
-            <label>Digite o novo modelo:</label>
-            <input type="text" name="modelo" value="<%= Celular.modelo %>"><br>
-            <label>Digite o novo sistema:</label>
-            <input type="text" name="sistema" value="<%= Celular.sistema %>"><br>
-            <label>Novo armazenamento:</label>
-            <input type="number" name="armazenamento" value="<%= Celular.armazenamento %>"><br>
-            <label>Novo preço:</label>
-            <input type="number" name="preco" value="<%= Celular.preco %>"><br>
-            <label>Novo fabricante:</label>
-            <input type="text" name="fabricante" value="<%= Celular.fabricante %>"><br>
-
+            <label>Nome:</label>
+            <input type="text" value="<%=Vacina.nome%>" name="nome"><br>
+            <label>Foto:</label>
+            <img src="<%=Vacina.foto%>" width="150" height="150" name="foto">
+            <input type="file" name="foto" accept="image/png"><br>
+            <label>Data de Nascimento:</label>
+            <input type="date" value="<%=Vacina.dataNascimento%>" name="dataNascimento"><br>
+            <label>Sus:</label>
+            <input type="number" value="<%=Vacina.sus%>" name="sus"><br>
+            <label>CPF:</label>
+            <input type="number" value="<%=Vacina.cpf%>" name="cpf"><br>
+            <label>Horario de Consulta:</label>
+            <input type="date" value="<%=Vacina.horario%>" name="horario"><br>
+            <label>Posto de Vacinação</label>
+            <input type="text" value="<%=Vacina.posto%>" name="posto"><br>
+            <select name="profissional">
+                <%for (const{id, nome} of Profissional) {%>
+                    <option value="<%=id%>">
+                        <%=nome%>
+                    </option>
+                    <%}%>
+            </select>
+            <select name="vacina">
+                <%for (const{id, nome} of Vacinas) {%>
+                    <option value="<%=id%>">
+                        <%=nome%>
+                    </option>
+                    <%}%>
+            </select>
             <button type="submit" class="btn submit">Submeter edição</button>
         </form>
     </div>
