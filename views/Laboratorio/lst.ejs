@@ -1,44 +1,48 @@
 <%-include('../cabecalho.ejs')%>
-    <h1 style="text-align:center; margin-bottom:32px; color:#333;">Laboratorio</h1>
-    <a href="/Laboratorio/add" class="btn add" style="margin-bottom:32px;">Adicionar Laboratorio</a>
-    <table class="curso-table" style="margin-top:24px;">
-        <thead>
-            <tr style="background:#e9ecef; color:#333;">
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Endereco</th>
-                <th>Logo</th>
-                <th colspan="2" style="text-align:center;">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
+<h1 style="text-align: center; margin-bottom: 32px; color: #333">
+    Laboratorio
+</h1>
+<a href="/Laboratorio/add" class="btn add" style="margin-bottom: 32px"
+    >Adicionar Laboratorio</a
+>
+<table class="curso-table" style="margin-top: 24px">
+    <thead>
+        <tr style="background: #e9ecef; color: #333">
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Endereco</th>
+            <th>Logo</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <form method="post">
+            <label>Nome do Laboratorio:</label>
+            <input type="text" name="Laboratorio" /><br />
+            <button type="submit" class="btn submit">Buscar</button>
+        </form>
+        <%for (const{id, nome, endereco, email, logo} of Laboratorios) {%>
+        <tr>
+            <td><%=nome%></td>
+            <td><%=endereco%></td>
+            <td><%=email%></td>
+            <td>
+                <img src="<%=logo%>" width="150" height="150" name="logo" />
+            </td>
+            <td>
+                <a href="/Laboratorio/edt/<%=id%>" class="btn edit"
+                    ><i class="fa-solid fa-pen">‌</i>&nbsp;Editar</a
+                ><br />
+                <a
+                    href="/Laboratorio/del/<%=id%>"
+                    class="btn delete"
+                    onclick="return confirm('Tem certeza que deseja excluir este Laboratorio?')"
+                    ><i class="fa-solid fa-box-archive">‌</i>&nbsp;Excluir</a
+                >
+            </td>
+        </tr>
+        <%}%>
+    </tbody>
+</table>
 
-            <form method="post">
-                <label>Nome do Laboratorio:</label>
-                <input type="text" name="Laboratorio"><br>
-                <button type="submit" class="btn submit">Buscar</button>
-            </form>
-            <%for (const{id, nome, endereco, email, logo} of
-                Laboratorios) {%>
-                <tr>
-                    <td>
-                        <%=nome%>
-                    </td>
-                    <td>
-                        <%=endereco%>
-                    </td>
-                    <td>
-                        <%=email%>
-                    </td>
-                    <td><img src="<%=logo%>" width="150" height="150" name="logo"></td>
-                    <td><a href="/Laboratorio/edt/<%=id%>" class="btn edit"><i class="fa-solid fa-pen">‌</i>&nbsp;Editar
-                            Laboratorio</a></td>
-                    <td><a href="/Laboratorio/del/<%=id%>" class="btn delete"
-                            onclick="return confirm('Tem certeza que deseja excluir este Laboratorio?')"><i
-                                class="fa-solid fa-box-archive">‌</i>&nbsp;Excluir Laboratorio</a></td>
-                </tr>
-                <%}%>
-        </tbody>
-    </table>
-
-    <%-include('../rodape.ejs')%>
+<%-include('../rodape.ejs')%>
