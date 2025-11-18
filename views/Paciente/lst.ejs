@@ -1,59 +1,57 @@
 <%-include('../cabecalho.ejs')%>
-    <h1 style="text-align:center; margin-bottom:32px; color:#333;">Celular</h1>
-    <a href="/Celular/add" class="btn add" style="margin-bottom:32px;">Adicionar celular</a>
-    <table class="curso-table" style="margin-top:24px;">
-        <thead>
-            <tr style="background:#e9ecef; color:#333;">
-                <th>Nome</th>
-                <th>Modelo</th>
-                <th>Sistema</th>
-                <th>Armazenameto</th>
-                <th>Preco</th>
-                <th>Fabricante</th>
-                <th>id</th>
-                <th colspan="2" style="text-align:center;">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
+<h1 style="text-align: center; margin-bottom: 32px; color: #333">Paciente</h1>
+<a href="/Paciente/add" class="btn add" style="margin-bottom: 32px"
+    >Adicionar Paciente</a
+>
+<table class="curso-table" style="margin-top: 24px">
+    <thead>
+        <tr style="background: #e9ecef; color: #333">
+            <th>Nome</th>
+            <th>Foto</th>
+            <th>Data de Nascimento</th>
+            <th>SUS</th>
+            <th>CPF</th>
+            <th>Horario de Atendimento</th>
+            <th>Posto</th>
+            <th>Profissional</th>
+            <th>Vacina</th>
+            <th colspan="1" style="text-align: center">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <form method="post">
+            <label>Pesquisar:</label>
+            <input type="text" name="Paciente" /><br />
+            <button type="submit" class="btn submit">Procurar</button>
+        </form>
+        <%for (const{nome, foto, dataNascimento, sus, cpf, horario, posto,
+        profissional, vacina, id} of Pacientes) {%>
+        <tr>
+            <td><%=nome%></td>
+            <td>
+                <img src="<%=foto%>" width="150" height="150" name="foto" />
+            </td>
+            <td><%=dataNascimento.toISOString().slice(0,10)%></td>
+            <td><%=sus%></td>
+            <td><%=cpf%></td>
+            <td><%=horario.toISOString().slice(0,10)%></td>
+            <td><%=posto%></td>
+            <td><%=profissional%></td>
+            <td><%=vacina%></td>
+            <td>
+                <a href="/Paciente/edt/<%=id%>" class="btn edit"
+                    ><i class="fa-solid fa-pen">‌</i>&nbsp;Editar</a
+                >
+                <br /><a
+                    href="/Paciente/del/<%=id%>"
+                    class="btn delete"
+                    onclick="return confirm('Tem certeza que deseja excluir este Paciente?')"
+                    ><i class="fa-solid fa-box-archive">‌</i>&nbsp;Excluir</a
+                >
+            </td>
+        </tr>
+        <%}%>
+    </tbody>
+</table>
 
-            <form method="post">
-                <label>Nome do celular:</label>
-                <input type="text" name="celular"><br>
-                <button type="submit" class="btn submit">Procurar</button>
-            </form>
-            <%for (const{nome, modelo, sistema, armazenamento, preco, fabricante, foto, id} of
-                Celulares) {%>
-                <tr>
-                    <td>
-                        <%=nome%>
-                    </td>
-                    <td>
-                        <%=modelo%>
-                    </td>
-                    <td>
-                        <%=sistema%>
-                    </td>
-                    <td>
-                        <%=armazenamento%> GB
-                    </td>
-                    <td>
-                        R$<%=preco%>,00
-                    </td>
-                    <td>
-                        <%=fabricante%>
-                    </td>
-                    <td>
-                        <%=id%>
-                    </td>
-                    <td><img src="<%=foto%>" width="150" height="150" name="foto"></td>
-                    <td><a href="/Celular/edt/<%=id%>" class="btn edit"><i class="fa-solid fa-pen">‌</i>&nbsp;Editar
-                            celular</a></td>
-                    <td><a href="/Celular/del/<%=id%>" class="btn delete"
-                            onclick="return confirm('Tem certeza que deseja excluir este celular?')"><i
-                                class="fa-solid fa-box-archive">‌</i>&nbsp;Excluir celular</a></td>
-                </tr>
-                <%}%>
-        </tbody>
-    </table>
-
-    <%-include('../rodape.ejs')%>
+<%-include('../rodape.ejs')%>

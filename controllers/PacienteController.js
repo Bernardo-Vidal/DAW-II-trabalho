@@ -8,9 +8,12 @@ export default class PacienteController {
         this.caminhoBase = caminhoBase;
 
         this.openAdd = async (req, res) => {
-            const profissional = await Profissional.find({})
-            const vacina = await Vacina.find({})
-            res.render(caminhoBase + "add", {Profissional:profissional, Vacinas:vacina});
+            const profissional = await Profissional.find({});
+            const vacina = await Vacina.find({});
+            res.render(caminhoBase + "add", {
+                Profissional: profissional,
+                Vacinas: vacina,
+            });
         };
         this.Excluir = async (req, res) => {
             await Paciente.findByIdAndDelete(req.params.id);
@@ -62,10 +65,10 @@ export default class PacienteController {
             const id = req.params.id;
             const vacina = await Vacina.find({});
             const profissional = await Profissional.find({});
-            const Paciente = await Paciente.findById(id);
+            const paciente = await Paciente.findById(id);
             console.log(Paciente);
             res.render(caminhoBase + "edt", {
-                Paciente: Paciente,
+                Paciente: paciente,
                 Vacina: vacina,
                 Profissional: profissional,
             });
