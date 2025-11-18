@@ -40,12 +40,12 @@ export default class LoteController {
         this.openEdt = async (req, res) => {
             //passar quem eu quero editar
             const id = req.params.id;
-            const Lote = await Lote.findById(id);
-            const Laboratorio = await Laboratorio.find({});
+            const lote = await Lote.findById(id);
+            const laboratorio = await Laboratorio.find({});
             console.log(Lote);
             res.render(caminhoBase + "edt", {
-                Lote: Lote,
-                Laboratorio: Laboratorio,
+                Lote: lote,
+                Laboratorio: laboratorio,
             });
         };
         this.Edt = async (req, res) => {

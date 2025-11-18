@@ -37,9 +37,9 @@ export default class VacinaController {
             //passar quem eu quero editar
             const id = req.params.id;
             const lote = await Lote.find({});
-            const Vacina = await Vacina.findById(id);
+            const vacina = await Vacina.findById(id);
             console.log(Vacina);
-            res.render(caminhoBase + "edt", { Vacina: Vacina, Lote: lote });
+            res.render(caminhoBase + "edt", { Vacina: vacina, Lote: lote });
         };
         this.Edt = async (req, res) => {
             var lote = null;

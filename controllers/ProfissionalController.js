@@ -29,9 +29,9 @@ export default class ProfissionalController {
         this.openEdt = async (req, res) => {
             //passar quem eu quero editar
             const id = req.params.id;
-            const Profissional = await Profissional.findById(id);
+            const profissional = await Profissional.findById(id);
             console.log(Profissional);
-            res.render(caminhoBase + "edt", { Profissional: Profissional });
+            res.render(caminhoBase + "edt", { Profissional: profissional });
         };
         this.Edt = async (req, res) => {
             await Profissional.findByIdAndUpdate(req.params.id, req.body);
