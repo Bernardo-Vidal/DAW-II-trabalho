@@ -1,26 +1,21 @@
 <%-include('../cabecalho.ejs')%>
-    <h1>Adicionar Celular</h1>
-    <div style="margin-bottom: 24px;">
-        <a href="/Celular/lst" class="btn">Listar</a>
-    </div>
-    <div>
-        <form method="post" enctype="multipart/form-data">
-            <label>Nome do celular:</label>
-            <input type="text" name="nome"><br>
-            <label>Modelo do celular:</label>
-            <input type="text" name="modelo"><br>
-            <label>Sistema do celular:</label>
-            <input type="text" name="sistema"><br>
-            <label>Armazenameto do celular(Em GB):</label>
-            <input type="number" name="armazenamento"><br>
-            <label>Preço do celular:</label>
-            <input type="number" name="preco"><br>
-            <label>Fabricante do celular:</label>
-            <input type="text" name="fabricante"><br>
-            <label for="escudo">Foto:</label>
-            <input type="file" id="foto" name="foto" accept="image/png" required>
-            
-            <button type="submit" class="btn submit">Cadastrar</button>
-        </form>
-    </div>
-    <%-include('../rodape.ejs')%>
+<h1>Adicionar Lote</h1>
+<div style="margin-bottom: 24px">
+    <a href="/Lote/lst" class="btn">Listar</a>
+</div>
+<div>
+    <form method="post">
+        <label>Validade:</label>
+        <input type="date" name="validade" /><br />
+        <label>Código:</label>
+        <input type="text" name="codigo" /><br />
+        <label>Laboratório:</label>
+        <select name="laboratorio">
+            <%for (const{id, nome} of Laboratorio) {%>
+            <option value="<%=id%>"><%=nome%></option>
+            <%}%>
+        </select>
+        <button type="submit" class="btn submit">Cadastrar</button>
+    </form>
+</div>
+<%-include('../rodape.ejs')%>

@@ -18,7 +18,7 @@ export default class VacinaController {
             var lote = null;
 
             if (req.body.lote != null) {
-                lote = await Lote.findById(req.body.Lote);
+                lote = await Lote.findById(req.body.lote);
             }
             await Vacina.create({
                 nome: req.body.nome,

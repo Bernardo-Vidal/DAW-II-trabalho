@@ -32,6 +32,8 @@ export default class PacienteController {
                     req.body.profissional
                 );
             }
+            console.log(req.body);
+            console.log(vacina, profissional);
             await Paciente.create({
                 nome: req.body.nome,
                 foto: req.file.buffer,

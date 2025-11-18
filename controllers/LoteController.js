@@ -20,7 +20,6 @@ export default class LoteController {
             if (req.body.laboratorio != null) {
                 laboratorio = await Laboratorio.findById(req.body.laboratorio);
             }
-
             await Lote.create({
                 codigo: req.body.codigo,
                 validade: req.body.validade,
@@ -29,7 +28,7 @@ export default class LoteController {
             res.redirect("/" + caminhoBase + "add");
         };
         this.list = async (req, res) => {
-            const laboratorio = await laboratorio.find({});
+            const laboratorio = await Laboratorio.find({});
             const resultado = await Lote.find({}).populate("laboratorio");
 
             res.render(caminhoBase + "lst", {

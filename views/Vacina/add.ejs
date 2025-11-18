@@ -4,21 +4,17 @@
     <a href="/Vacina/lst" class="btn">Listar</a>
 </div>
 <div>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post">
         <label>Nome:</label>
         <input type="text" name="nome" /><br />
         <label>Efetividade:</label>
         <input type="text" name="efetividade" /><br />
         <label>Lote:</label>
         <select name="lote">
-            <option value="">Selecione</option>
-            <option value="blibe">Selecione</option>
-            <option value="blibi">Selecione</option>
-            <!--<% Lotes.forEach(function(Lote){ %>
-            <option value="<%=Lote._id%>"><%=Lote.nome%></option>
-            <%})%>-->
+            <%for (const{id, codigo} of Lotes) {%>
+            <option value="<%=id%>"><%=codigo%></option>
+            <%}%>
         </select>
-
         <button type="submit" class="btn submit">Cadastrar</button>
     </form>
 </div>

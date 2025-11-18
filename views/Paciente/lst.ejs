@@ -36,8 +36,8 @@
             <td><%=cpf%></td>
             <td><%=horario.toISOString().slice(0,10)%></td>
             <td><%=posto%></td>
-            <td><%=profissional%></td>
-            <td><%=vacina%></td>
+            <td><%=profissional !=null?profissional.nome:""%></td>
+            <td><%=vacina !=null?vacina.nome:""%></td>
             <td>
                 <a href="/Paciente/edt/<%=id%>" class="btn edit"
                     ><i class="fa-solid fa-pen">‌</i>&nbsp;Editar</a
