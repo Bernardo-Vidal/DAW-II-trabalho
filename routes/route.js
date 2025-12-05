@@ -5,7 +5,7 @@ const controle = new GeralController();
 
 router.get("/", controle.admin);
 router.get("/site", controle.home);
-router.get("/site/agenda", controle.agenda);
+router.get("/site/pros", controle.pros);
 router.get("/site/stats", controle.stats);
 router.get("/site/about", controle.about);
 router.post("/formulario", controle.formulario);
