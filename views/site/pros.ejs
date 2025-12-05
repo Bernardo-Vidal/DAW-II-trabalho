@@ -1,3 +1,18 @@
 <%-include('cabecalho.ejs')%>
-<h1>ewewewewew</h1>
+<div class="container-fluid">
+    <h1 class="container-fluid">Nossa Equipe</h1>
+    <div class="container-fluid">
+        <div class="row">
+        <%var i = 0;for(const{nome, foto, cargo}of Profissional){%>
+            <div class="card mb-3 g-col-4 mx-auto" style="width: 18rem;">
+                <img src="<%=foto%>" class="card-img-top" alt="<%=nome%>">
+                <div class="card-body">
+                    <p class="card-text"><%=nome%></p>
+                    <p class="card-text"><%=cargo%></p>
+                </div>
+            </div>
+        <%}%>
+        </div>
+    </div>
+</div>
 <%-include('rodape.ejs')%>
