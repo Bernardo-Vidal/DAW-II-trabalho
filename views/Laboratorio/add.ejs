@@ -1,19 +1,27 @@
 <%-include('../cabecalho.ejs')%>
-<h1>Adicionar Laboratorio</h1>
-<div style="margin-bottom: 24px">
-    <a href="/Laboratorio/lst" class="btn">Listar</a>
+<h1 class="container-fluid">Adicionar Laboratorio</h1>
+<div class="container-fluid" style="margin-bottom: 24px">
+    <a href="/Laboratorio/lst" class="btn btn-secondary">Listar</a>
 </div>
 <div>
     <form method="post" enctype="multipart/form-data">
-        <label>Nome:</label>
-        <input type="text" id="nome" name="nome" /><br />
-        <label>Endereco:</label>
-        <input type="text" name="endereco" /><br />
-        <label>Email:</label>
-        <input type="text" name="email" /><br />
-        <label for="logo">Foto:</label>
-        <input type="file" id="logo" name="logo" accept="image/png" />
-        <button type="submit" class="btn submit">Cadastrar</button>
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" id="nome" name="nome" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="endereco" class="form-label">Endereço</label>
+            <input type="text" id="endereco" name="endereco" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" id="email" name="email" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="logo">Logo</label>
+            <input type="file" class="form-control" name="logo" accept="image/png" id="logo">
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
 <%-include('../rodape.ejs')%>

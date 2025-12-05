@@ -1,25 +1,30 @@
 <%-include('../cabecalho.ejs')%>
-<h1>Editar Profissional</h1>
-<div style="margin-bottom: 24px">
-    <a href="/Profissional/lst" class="btn">Listar</a>
+<h1 class="container-fluid">Editar Profissional</h1>
+<div class="container-fluid" style="margin-bottom: 24px">
+    <a href="/Profissional/lst" class="btn btn-secondary">Listar</a>
 </div>
 <div>
-    <form method="post" class="form-visual" enctype="multipart/form-data">
-        <label>Nome do Profissional:</label>
-        <input type="text" name="nome" value="<%= Profissional.nome %>" /><br />
-        <label>Foto:</label>
-        <img src="<%=Profissional.foto%>" width="150" height="150" /><br />
-        <input
-            type="file"
-            accept="image/png"
-            value="<%=Profissional.foto%>"
-            name="foto"
-        /><br />
-        <label>CRM:</label>
-        <input type="text" name="crm" value="<%=Profissional.crm%>" /><br />
-        <label>Cargo:</label>
-        <input type="text" name="cargo" value="<%=Profissional.cargo%>" /><br />
-        <button type="submit" class="btn submit">Submeter edição</button>
+    <form method="post" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+            <img src="<%=Profissional.foto%>" class="rounded float-start" width="100" height="100">
+        </div>
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input value="<%=Profissional.nome%>" type="text" id="nome" name="nome" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="foto">Foto</label>
+            <input type="file" value="<%=Profissional.foto%>" class="form-control" name="foto" accept="image/png" id="foto">
+        </div>
+        <div class="mb-3">
+            <label for="cargo" class="form-label">Cargo</label>
+            <input value="<%=Profissional.cargo%>" type="text" id="cargo" name="cargo" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="crm" class="form-label">CRM</label>
+            <input value="<%=Profissional.crm%>" type="text" id="crm" name="crm" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
 <%-include('../rodape.ejs')%>

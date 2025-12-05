@@ -1,11 +1,6 @@
 <%-include('../cabecalho.ejs')%>
-<h1 style="text-align: center; margin-bottom: 32px; color: #333">
-    Profissional
-</h1>
-<a href="/Profissional/add" class="btn add" style="margin-bottom: 32px"
-    >Adicionar Profissional</a
->
-<table class="curso-table" style="margin-top: 24px">
+<div class="container-fluid">
+<table class="container-fluid" style="margin-top: 24px">
     <thead>
         <tr style="background: #e9ecef; color: #333">
             <th>Nome</th>
@@ -16,11 +11,18 @@
         </tr>
     </thead>
     <tbody>
-        <form method="post">
-            <label>Pesquisar:</label>
-            <input type="text" name="Profissional" /><br />
-            <button type="submit" class="btn submit">Procurar</button>
-        </form>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <form class="d-flex flex-row" method="post" role="search">
+                    <input class="form-control p-2" type="search" placeholder="Pesquisa" name="Profissional" aria-label="Search"/>
+                    <button class="btn btn-outline-success p-2" type="submit">Buscar</button>
+                    <button class="btn btn-sm btn-outline-secondary p-2" type="button"><a href="/Profissional/add">Adicionar</a></button>
+                </form>
+            </div>
+        </nav>
+        <h1 style="text-align: center; margin-bottom: 32px; color: #333">
+            Profissional
+        </h1>
         <%for (const{nome, foto, crm, cargo, id} of Profissional) {%>
         <tr>
             <td><%=nome%></td>
@@ -30,12 +32,12 @@
             <td><%=crm%></td>
             <td><%=cargo%></td>
             <td>
-                <a href="/Profissional/edt/<%=id%>" class="btn edit"
+                <a href="/Profissional/edt/<%=id%>" class="btn btn-warning"
                     ><i class="fa-solid fa-pen">‌</i>&nbsp;Editar </a
                 ><br />
                 <a
                     href="/Profissional/del/<%=id%>"
-                    class="btn delete"
+                    class="btn btn-danger"
                     onclick="return confirm('Tem certeza que deseja excluir este Profissional?')"
                     ><i class="fa-solid fa-box-archive">‌</i>&nbsp;Excluir
                 </a>
@@ -44,5 +46,5 @@
         <%}%>
     </tbody>
 </table>
-
+</div>
 <%-include('../rodape.ejs')%>

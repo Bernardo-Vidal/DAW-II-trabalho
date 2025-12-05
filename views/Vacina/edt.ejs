@@ -1,25 +1,28 @@
 <%-include('../cabecalho.ejs')%>
-<h1>Editar Vacina</h1>
-<div style="margin-bottom: 24px">
-    <a href="/Vacina/lst" class="btn">Listar</a>
+<h1 class="container-fluid">Editar Vacina</h1>
+<div class="container-fluid" style="margin-bottom: 24px">
+    <a href="/Vacina/lst" class="btn btn-secondary">Listar</a>
 </div>
 <div>
-    <form method="post" class="form-visual">
-        <label>Nome:</label>
-        <input type="text" name="nome" value="<%=Vacina.nome%>" /><br />
-        <label>Efetividade:</label>
-        <input
-            type="text"
-            name="efetividade"
-            value="<%=Vacina.efetividade%>"
-        /><br />
-        <label>Lote:</label>
-        <select name="lote">
-            <%for (const{id, codigo} of Lote) {%>
-            <option value="<%=id%>"><%=codigo%></option>
-            <%}%>
-        </select>
-        <button type="submit" class="btn submit">Submeter edição</button>
+    <form method="post">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input value="<%=Vacina.nome%>" type="text" id="nome" name="nome" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="efetividade" class="form-label">Efetividade</label>
+            <input value="<%=Vacina.efetividade%>" type="text" id="efetividade" name="efetividade" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="lote" class="form-label">Lote</label>
+            <select id="lote" name="lote" class="form-select form-select-lg mb-3">
+                <option selected>Selecione</option>
+                <%for (const{id, codigo} of Lote) {%>
+                    <option value="<%=id%>"><%=codigo%></option>
+                <%}%>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
 <%-include('../rodape.ejs')%>

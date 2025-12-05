@@ -1,40 +1,60 @@
 <%-include('../cabecalho.ejs')%>
-<h1>Editar Paciente</h1>
-<div style="margin-bottom: 24px">
-    <a href="/Paciente/lst" class="btn">Listar</a>
+<h1 class="container-fluid">Editar Paciente</h1>
+<div class="container-fluid" style="margin-bottom: 24px;">
+    <a href="/Paciente/lst" class="btn btn-secondary">Listar</a>
 </div>
 <div>
-    <form method="post" class="form-visual">
-        <label>Nome:</label>
-        <input type="text" value="<%=Paciente.nome%>" name="nome" /><br />
-        <label>Foto:</label>
-        <img src="<%=Paciente.foto%>" width="150" height="150" name="foto" />
-        <input type="file" name="foto" accept="image/png" /><br />
-        <label>Data de Nascimento:</label>
-        <input
-            type="date"
-            value="<%=Paciente.dataNascimento%>"
-            name="dataNascimento"
-        /><br />
-        <label>Sus:</label>
-        <input type="number" value="<%=Paciente.sus%>" name="sus" /><br />
-        <label>CPF:</label>
-        <input type="number" value="<%=Paciente.cpf%>" name="cpf" /><br />
-        <label>Horario de Consulta:</label>
-        <input type="date" value="<%=Paciente.horario%>" name="horario" /><br />
-        <label>Posto de Vacinação</label>
-        <input type="text" value="<%=Paciente.posto%>" name="posto" /><br />
-        <select name="profissional">
-            <%for (const{id, nome} of Profissional) {%>
-            <option value="<%=id%>"><%=nome%></option>
-            <%}%>
-        </select>
-        <select name="Paciente">
-            <%for (const{id, nome} of Vacina) {%>
-            <option value="<%=id%>"><%=nome%></option>
-            <%}%>
-        </select>
-        <button type="submit" class="btn submit">Submeter edição</button>
+    <form method="post" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+            <img src="<%=Paciente.foto%>" class="rounded float-start" width="100" height="100">
+        </div>
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input value="<%=Vacina.nome%>" type="text" id="nome" name="nome" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="foto">Foto</label>
+            <input value="<%=Vacina.foto%>" type="file" class="form-control" name="foto" accept="image/png" id="foto">
+        </div>
+        <div class="mb-3">
+            <label for="dataNascimento" class="form-label">Data de Nascimento</label>
+            <input value="<%=Vacina.dataNascimento%>" type="date" id="dataNascimento" name="dataNascimento" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="sus" class="form-label">SUS</label>
+            <input value="<%=Vacina.sus%>" type="number" id="sus" name="sus" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="cpf" class="form-label">CPF</label>
+            <input value="<%=Vacina.cpf%>" type="number" id="cpf" name="cpf" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="horario" class="form-label">Horário de consulta</label>
+            <input value="<%=Vacina.horario%>" type="date" id="horario" name="horario" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="posto" class="form-label">Posto de Vacinação</label>
+            <input value="<%=Vacina.posto%>" type="text" id="posto" name="posto" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="profissional" class="form-label">Profissional</label>
+            <select id="profissional" name="profissional" class="form-select form-select-lg mb-3">
+                <option selected>Selecione</option>
+                <%for (const{id, nome} of Profissional) {%>
+                    <option value="<%=id%>"><%=nome%></option>
+                <%}%>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="vacina" class="form-label">Vacina</label>
+            <select id="vacina" name="vacina" class="form-select form-select-lg mb-3">
+                <option selected>Selecione</option>
+                <%for (const{id, nome} of Vacina) {%>
+                    <option value="<%=id%>"><%=nome%></option>
+                <%}%>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
 <%-include('../rodape.ejs')%>

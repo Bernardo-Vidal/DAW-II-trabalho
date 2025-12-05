@@ -1,9 +1,6 @@
 <%-include('../cabecalho.ejs')%>
-<h1 style="text-align: center; margin-bottom: 32px; color: #333">Vacina</h1>
-<a href="/Vacina/add" class="btn add" style="margin-bottom: 32px"
-    >Adicionar Vacina</a
->
-<table class="curso-table" style="margin-top: 24px">
+<div class="container-fluid">
+<table class="container-fluid" >
     <thead>
         <tr style="background: #e9ecef; color: #333">
             <th>Nome</th>
@@ -13,23 +10,30 @@
         </tr>
     </thead>
     <tbody>
-        <form method="post">
-            <label>Pesquisar:</label>
-            <input type="text" name="Vacina" /><br />
-            <button type="submit" class="btn submit">Procurar</button>
-        </form>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <form class="d-flex flex-row" method="post" role="search">
+                    <input class="form-control p-2" type="search" placeholder="Pesquisa" name="Vacina" aria-label="Search"/>
+                    <button class="btn btn-outline-success p-2" type="submit">Buscar</button>
+                    <button class="btn btn-sm btn-outline-secondary p-2" type="button"><a href="/Vacina/add">Adicionar</a></button>
+                </form>
+            </div>
+        </nav>
+        <h1 style="text-align: center; margin-bottom: 32px; color: #333">
+            Vacina
+        </h1>
         <%for (const{nome, lote, efetividade, id} of Vacinas) {%>
         <tr>
             <td><%=nome%></td>
             <td><%=efetividade%></td>
             <td><%=lote !=null?lote.codigo:""%></td>
             <td>
-                <a href="/Vacina/edt/<%=id%>" class="btn edit"
+                <a href="/Vacina/edt/<%=id%>" class="btn btn-warning"
                     ><i class="fa-solid fa-pen">‌</i>&nbsp;Editar</a
                 ><br />
                 <a
                     href="/Vacina/del/<%=id%>"
-                    class="btn delete"
+                    class="btn btn-danger"
                     onclick="return confirm('Tem certeza que deseja excluir este Vacina?')"
                     ><i class="fa-solid fa-box-archive">‌</i>&nbsp;Excluir
                 </a>
@@ -38,5 +42,5 @@
         <%}%>
     </tbody>
 </table>
-
+</div>
 <%-include('../rodape.ejs')%>

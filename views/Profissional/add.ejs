@@ -1,19 +1,27 @@
 <%-include('../cabecalho.ejs')%>
-<h1>Adicionar Profissional</h1>
-<div style="margin-bottom: 24px">
-    <a href="/Profissional/lst" class="btn">Listar</a>
+<h1 class="container-fluid">Adicionar Profissional</h1>
+<div class="container-fluid" style="margin-bottom: 24px">
+    <a href="/Profissional/lst" class="btn btn-secondary">Listar</a>
 </div>
 <div>
     <form method="post" enctype="multipart/form-data">
-        <label>Nome do Profissional:</label>
-        <input type="text" name="nome" /><br />
-        <label>Foto:</label>
-        <input type="file" accept="image/png" name="foto" /><br />
-        <label>CRM:</label>
-        <input type="text" name="crm" /><br />
-        <label>Cargo:</label>
-        <input type="text" name="cargo" /><br />
-        <button type="submit" class="btn submit">Cadastrar</button>
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" id="nome" name="nome" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="foto">Foto</label>
+            <input type="file" class="form-control" name="foto" accept="image/png" id="foto">
+        </div>
+        <div class="mb-3">
+            <label for="cargo" class="form-label">Cargo</label>
+            <input type="text" id="cargo" name="cargo" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="crm" class="form-label">CRM</label>
+            <input type="text" id="crm" name="crm" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
 <%-include('../rodape.ejs')%>

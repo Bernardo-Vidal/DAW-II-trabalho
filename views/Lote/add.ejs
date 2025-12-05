@@ -1,21 +1,28 @@
 <%-include('../cabecalho.ejs')%>
-<h1>Adicionar Lote</h1>
-<div style="margin-bottom: 24px">
-    <a href="/Lote/lst" class="btn">Listar</a>
+<h1 class="container-fluid" >Adicionar Lote</h1>
+<div class="container-fluid" style="margin-bottom: 24px">
+    <a href="/Lote/lst" class="btn btn-secondary">Listar</a>
 </div>
 <div>
     <form method="post">
-        <label>Validade:</label>
-        <input type="date" name="validade" /><br />
-        <label>Código:</label>
-        <input type="text" name="codigo" /><br />
-        <label>Laboratório:</label>
-        <select name="laboratorio">
-            <%for (const{id, nome} of Laboratorio) {%>
-            <option value="<%=id%>"><%=nome%></option>
-            <%}%>
-        </select>
-        <button type="submit" class="btn submit">Cadastrar</button>
+        <div class="mb-3">
+            <label for="validade" class="form-label">Validade</label>
+            <input type="date" id="validade" name="validade" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="codigo" class="form-label">Código</label>
+            <input type="text" id="codigo" name="codigo" class="form-control">
+        </div>
+        <div class="mb-3">
+                <label for="laboratorio" class="form-label">Laboratório</label>
+                <select id="laboratorio" name="laboratorio" class="form-select form-select-lg mb-3">
+                    <option selected>Selecione</option>
+                    <%for (const{id, nome} of Laboratorio) {%>
+                        <option value="<%=id%>"><%=nome%></option>
+                    <%}%>
+                </select>
+            </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
 <%-include('../rodape.ejs')%>

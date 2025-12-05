@@ -1,21 +1,30 @@
 <%-include('../cabecalho.ejs')%>
-    <h1>Editar Laboratorio</h1>
-    <div style="margin-bottom: 24px;">
-        <a href="/Laboratorio/lst" class="btn">Listar</a>
-    </div>
-    <div>
-        <form method="post" class="form-visual" enctype="multipart/form-data">
-            <label>Nome:</label>
-            <input type="text" name="nome" value="<%= Laboratorio.nome %>"><br>
-            <label>Endereco:</label>
-            <input type="text" name="endereco" value="<%= Laboratorio.endereco %>"><br>
-            <label>Email:</label>
-            <input type="text" name="email" value="<%= Laboratorio.email %>"><br>
-            <label>Logo:</label>
-            <img src="<%=Laboratorio.logo%>" width="150" height="150">
-            <input type="file" name="logo" accept="image/png"><br>
-
-            <button type="submit" class="btn submit">Submeter edição</button>
-        </form>
-    </div>
-    <%-include('../rodape.ejs')%>
+<h1 class="container-fluid">Editar Laboratorio</h1>
+<div class="container-fluid" style="margin-bottom: 24px">
+    <a href="/Laboratorio/lst" class="btn btn-secondary">Listar</a>
+</div>
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+            <img src="<%=Laboratorio.logo%>" class="rounded float-start" width="100" height="100">
+        </div>
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input value="<%=Laboratorio.nome%>" type="text" id="nome" name="nome" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="endereco" class="form-label">Endereço</label>
+            <input value="<%=Laboratorio.endereco%>" type="text" id="endereco" name="endereco" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input value="<%=Laboratorio.email%>" type="text" id="email" name="email" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="logo">Logo</label>
+            <input value="<%=Laboratorio.logo%>" type="file" class="form-control" name="logo" accept="image/png" id="logo">
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+<%-include('../rodape.ejs')%>
