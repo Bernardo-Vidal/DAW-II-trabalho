@@ -1,3 +1,25 @@
 <%-include('cabecalho.ejs')%>
+        <div>
+            <h1>Pacientes Atendidos</h1>
+                <%var pacientes = 0%>
+                <%for(const{id} of Paciente){pacientes++}%>
+                <h3>
+                    <%=pacientes%>
+                </h3>
+        </div>
+        <div>
 
+            <h1>Vacinas Disponíveis</h1>
+            <%for(const{nome, efetividade} of Vacina){%>
+                <%var name = nome, tomadas = 0;for(const{id, vacina} of Paciente){%>
+                    <%if(name == vacina.nome){tomadas++}%>
+                <%}%>
+                <div>
+                    <p>Nome: <%=nome%></p>
+                    <p>Efevidade: <%=efetividade%></p>
+                    <p>Total de vacinações: <%=tomadas%></p>
+                </div>
+            <%}%>
+            <h1>Laboratórios Registrados</h1>
+        </div>
 <%-include('rodape.ejs')%>

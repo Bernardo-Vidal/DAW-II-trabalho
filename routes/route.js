@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
-import controller from "../controllers/controller.js";
-const controle = new controller();
+import GeralController from "../controllers/controller.js";
+const controle = new GeralController();
 
 router.get("/", controle.admin);
 router.get("/site", controle.home);
