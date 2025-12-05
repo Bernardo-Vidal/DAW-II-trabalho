@@ -52,9 +52,8 @@ export default class PacienteController {
             const vacina = await Vacina.find({});
             const profissional = await Profissional.find({});
             const resultado = await Paciente.find({}).populate(
-                "vacina",
-                "profissional"
-            );
+                "vacina"
+            ).populate("profissional");
 
             res.render(caminhoBase + "lst", {
                 Pacientes: resultado,
