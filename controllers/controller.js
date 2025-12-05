@@ -17,7 +17,8 @@ export default class GeralController {
         };
         this.pros = async (req, res) => {
             const pacientes = await Paciente.find({})
-            res.render("site/pros", {Paciente:pacientes});
+            const profissionais = await Profissional.find({})
+            res.render("site/pros", {Paciente:pacientes, Profissional:profissionais});
         };
         this.stats = async (req, res) => {
             const profissionais =  await Profissional.find({})
